@@ -18,11 +18,14 @@ import org.testng.Assert;
 
 public class BasePage {
 	
-	private static final long timeout = 0;
+	private static final long timeout = 30;
 	private JavascriptExecutor jsExecutor;
 	Actions action;
 
-
+	public static BasePage getBasePageObject() {
+		return new BasePage();
+		
+	}
 	public void openPageUrl(WebDriver driver, String pageUrl) {
 		
 		driver.get(pageUrl);
@@ -115,19 +118,19 @@ public class BasePage {
 		driver.switchTo().window(parentID);
 	}
 	
-	public WebElement getWebElement(WebDriver driver,String xpathlocator) {
+	private WebElement getWebElement(WebDriver driver,String xpathlocator) {
 		
 		return driver.findElement(getByXpath(xpathlocator));
 		
 	}
 	
-	public List<WebElement> getListWebElement(WebDriver driver,String xpathlocator) {
+	private List<WebElement> getListWebElement(WebDriver driver,String xpathlocator) {
 		
 		return driver.findElements(getByXpath(xpathlocator));
 		
 	}
 	
-	public By getByXpath(String xpathlocator) {
+	private By getByXpath(String xpathlocator) {
 		
 		return By.xpath(xpathlocator);
 	}
@@ -397,7 +400,7 @@ public class BasePage {
 		
 	}
 	
-	private long longTimeout = 30;
+	public long longTimeout = 30;
 	
 	
 

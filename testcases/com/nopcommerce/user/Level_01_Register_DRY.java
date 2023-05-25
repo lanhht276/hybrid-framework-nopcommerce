@@ -63,7 +63,7 @@ public class Level_01_Register_DRY {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("input#FirstName")).sendKeys("Automation");
 		driver.findElement(By.cssSelector("input#LastName")).sendKeys("FC");
-		driver.findElement(By.cssSelector("input#Email")).sendKeys("afc1240@gmail.com");
+		driver.findElement(By.cssSelector("input#Email")).sendKeys(emailAddress);
 		driver.findElement(By.cssSelector("input#Password")).sendKeys("123456");
 		driver.findElement(By.cssSelector("input#ConfirmPassword")).sendKeys("123456");
 		

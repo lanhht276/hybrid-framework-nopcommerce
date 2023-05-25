@@ -1,6 +1,6 @@
 package pageUIs;
 
 public class LoginPageUI {
-	public static final String EMAIL_TEXTBOX = "/input[@id='email']";
+	public static final String REGISTER_LINK = "//a[@class='ico-register']";
 
 }

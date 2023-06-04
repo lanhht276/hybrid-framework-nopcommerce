@@ -10,8 +10,8 @@ public class RegisterPageObject extends BasePage {
 	private WebDriver driver;
 	
 	
-	public RegisterPageObject(WebDriver mappingDriver) {
-		driver = mappingDriver;
+	public RegisterPageObject(WebDriver driver) {
+		this.driver = driver;
 		System.out.println("Driver at RegisterPageObject is: " + driver.toString());
 	}
 

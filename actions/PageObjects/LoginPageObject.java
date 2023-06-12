@@ -13,14 +13,11 @@ public class LoginPageObject extends BasePage{
 		 System.out.println("Driver at LoginPageObject is: " + driver.toString());
 	 }
 
-	public void clickToRegisterLink() {
-		waitForElementClickable(driver, LoginPageUI.REGISTER_LINK );
-		clickToElement(driver, LoginPageUI.REGISTER_LINK );
-	}
-
-	public void clickToLoginButton() {
+	public HomePageObject clickToLoginButton() {
 		waitForElementClickable(driver, LoginPageUI.LOGIN_BUTTON );
 		clickToElement(driver, LoginPageUI.LOGIN_BUTTON );
+		//return new HomePageObject(driver);
+		return PageGeneratorManager.getHomePage(driver);
 	}
 
 	public void inputToEmailTextbox(String email) {

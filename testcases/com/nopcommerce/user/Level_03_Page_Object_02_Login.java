@@ -3,7 +3,6 @@ package com.nopcommerce.user;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
@@ -15,8 +14,6 @@ import PageObjects.HomePageObject;
 import PageObjects.LoginPageObject;
 import PageObjects.RegisterPageObject;
 import commons.BasePage;
-import pageUIs.LoginPageUI;
-
 
 public class Level_03_Page_Object_02_Login extends BasePage{
 	private WebDriver driver;

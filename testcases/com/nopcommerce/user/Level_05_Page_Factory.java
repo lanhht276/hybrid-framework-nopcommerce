@@ -1,28 +1,22 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import PageObjects.HomePageObject;
-import PageObjects.LoginPageObject;
-import PageObjects.RegisterPageObject;
-import commons.BasePage;
+
 import commons.BaseTest;
-import pageUIs.LoginPageUI;
+import pageFactory.HomePageObject;
+import pageFactory.LoginPageObject;
+import pageFactory.RegisterPageObject;
 
 
 public class Level_05_Page_Factory extends BaseTest{
 	private WebDriver driver;
-	private String projectPath = System.getProperty("user.dir");
 	private String firstName;String lastName;String invalidEmail; String existingEmail; String notFoundEmail; String password;String confirmPassword;String invalidPassword;String emailAddress;
 	
 	private HomePageObject homePage;
@@ -38,8 +32,8 @@ public class Level_05_Page_Factory extends BaseTest{
 		emailAddress = "afc" + getRandomNumber() + "@mail.com";
 		firstName = "Automation";
 		lastName = "FC";
-		invalidEmail = "afc@mail";
-		
+		invalidEmail = "afc@mail.";
+		notFoundEmail = "afc" + getRandomNumber() + "@mail.com";
 		password = "123456";
 		confirmPassword = "123456";
 		invalidPassword = "123";
@@ -52,7 +46,7 @@ public class Level_05_Page_Factory extends BaseTest{
 		System.out.println("Pre-condition - Step 2: Input to required fields");
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(existingEmail);
+		registerPage.inputToEmailTextbox(emailAddress);
 		registerPage.inputToPasswordTextbox(password);
 		registerPage.inputToConfirmPasswordTextbox(confirmPassword);
 			
@@ -130,7 +124,7 @@ public class Level_05_Page_Factory extends BaseTest{
 		
 		loginPage = new LoginPageObject(driver);
 		System.out.println("Login_04 - Step 2: Input registered email");
-		loginPage.inputToEmailTextbox(existingEmail);
+		loginPage.inputToEmailTextbox(emailAddress);
 		
 		System.out.println("Login_04 - Step 3:  Not input password");
 		loginPage.inputToPasswordTextbox("");
@@ -150,7 +144,7 @@ public class Level_05_Page_Factory extends BaseTest{
 		
 		loginPage = new LoginPageObject(driver);
 		System.out.println("Login_05 - Step 2: Input registered email");
-		loginPage.inputToEmailTextbox(existingEmail);
+		loginPage.inputToEmailTextbox(emailAddress);
 		
 		System.out.println("Login_05 - Step 3: Input incorrect password");
 		loginPage.inputToPasswordTextbox(invalidPassword);
@@ -170,7 +164,7 @@ public class Level_05_Page_Factory extends BaseTest{
 		
 		loginPage = new LoginPageObject(driver);
 		System.out.println("Login_06 - Step 2: Input to required fields");
-		loginPage.inputToEmailTextbox(existingEmail);
+		loginPage.inputToEmailTextbox(emailAddress);
 		loginPage.inputToPasswordTextbox(password);
 				
 		System.out.println("Login_06 - Step 3: Click To Login Button");

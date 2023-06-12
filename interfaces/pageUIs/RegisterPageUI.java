@@ -13,10 +13,8 @@ public class RegisterPageUI {
 	public static final String EMAIL_ERROR_MSG = "//span[@id='Email-error']";
 	public static final String PASSWORD_ERROR_MSG = "//span[@id='Password-error']";
 	public static final String CONFIRM_PASSWORD_ERROR_MSG = "//span[@id='ConfirmPassword-error']";
-	
 	public static final String REGISTER_SUCCESS_MSG = "//div[@class='result']";
-	public static final String continue_button = "//a[contains(@class, 'register-continue-button')]";
+	public static final String CONTINUE_BUTTON = "//a[contains(@class, 'register-continue-button')]";
 	public static final String INVALID_EMAIL_ERROR_MSG = "//div[contains(@class,'message-error')]";
 
-	
 }

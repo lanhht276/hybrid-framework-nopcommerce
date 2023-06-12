@@ -1,14 +1,7 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
-import javax.management.RuntimeErrorException;
-
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -17,7 +10,6 @@ import org.testng.annotations.Test;
 
 import PageObjects.HomePageObject;
 import PageObjects.RegisterPageObject;
-import commons.BasePage;
 import commons.BaseTest;
 
 

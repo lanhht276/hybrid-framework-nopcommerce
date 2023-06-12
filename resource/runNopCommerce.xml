@@ -1,41 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="NopCommerce">
-  <test name="Run on Chrome">
-  	<parameter name = "browser" value="CHROME" />
-    <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
-    </classes>
-  </test> 
+
   <test name="Run on Firefox">
   	<parameter name = "browser" value="FIREFOX" />
     <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
+      <class name="com.nopcommerce.user.Level_05_Page_Factory"/>
     </classes>
   </test> 
-  <test name="Run on Edge">
-  	<parameter name = "browser" value="EDGE" />
+ <test name="Run on Chrome">
+  	<parameter name = "browser" value="chrome" />
     <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
-    </classes>
-  </test> 
-  
-  <test name="Run on CocCoc">
-  	<parameter name = "browser" value="COCCOC" />
-    <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
-    </classes>
-  </test> 
-  
-  <test name="Run on Opera">
-  	<parameter name = "browser" value="opera" />
-    <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
-    </classes>
-  </test> 
-  <test name="Run on Brave">
-  	<parameter name = "browser" value="BRAVE" />
-    <classes>
-      <class name="com.nopcommerce.user.Level_04_Multiple_Browser"/>
+      <class name="com.nopcommerce.user.Level_05_Page_Factory"/>
     </classes>
   </test> 
 </suite> 

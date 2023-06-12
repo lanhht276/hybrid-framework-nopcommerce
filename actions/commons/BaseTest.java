@@ -7,16 +7,10 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
-
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-
 public class BaseTest {
-	private String projectPath = System.getProperty("user.dir");
+	
 	protected WebDriver driver;
 	
 	protected WebDriver getBrowserDriver(String browserName) {
@@ -61,16 +55,13 @@ public class BaseTest {
 		
 		switch (browser) {
 		case FIREFOX:
-			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			driver = WebDriverManager.firefoxdriver().create();
 			break;
 		case CHROME:
-			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			driver = WebDriverManager.chromedriver().create();
 			break;
 		case EDGE:
-			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+			driver = WebDriverManager.edgedriver().create();
 			break;
 		case COCCOC:
 			WebDriverManager.chromedriver().driverVersion("112.0.5615.28").setup();

@@ -2,7 +2,6 @@ package commons;
 
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -83,10 +82,12 @@ public class BaseTest {
 		}
 		
 		driver.manage().window().setPosition(new Point(0, 0));
-		driver.manage().window().setSize(new Dimension(1920,1080));
+		//driver.manage().window().setSize(new Dimension(1920,1080));
+		
+		driver.manage().window().fullscreen();
 		
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/");
+		driver.get(GlobalConstants.USER_PAGE_URL);
 		return driver;
 		 
 	}

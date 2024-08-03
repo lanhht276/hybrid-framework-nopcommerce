@@ -37,6 +37,6 @@
 	<classpathentry kind="lib" path="libWebDriverManager/jcl-over-slf4j-1.7.30.jar"/>
 	<classpathentry kind="lib" path="libWebDriverManager/jna-5.8.0.jar"/>
 	<classpathentry kind="lib" path="libWebDriverManager/slf4j-api-2.0.3.jar"/>
-	<classpathentry kind="lib" path="libWebDriverManager/webdrivermanager-5.3.1.jar"/>
+	<classpathentry kind="lib" path="libWebDriverManager/webdrivermanager-5.3.1.jar" sourcepath="libWebDriverManager/webdrivermanager-5.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

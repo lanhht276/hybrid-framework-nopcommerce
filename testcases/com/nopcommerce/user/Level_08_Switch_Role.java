@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -32,12 +33,14 @@ public class Level_08_Switch_Role extends BaseTest{
 	private UserCustomerInfoPageObject userCustomerInfoPage;
 	
 	 
-	@Parameters("browser")
+	
 	@BeforeClass
-	public void beforeClass(String browserName) {
+	@Parameters("browser")
+	public void beforeClass (String browserName) {
 		System.out.println("Run on browserName: " + browserName);
 
 		driver = getBrowserDriver(browserName);
+		
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		
 		
@@ -66,6 +69,7 @@ public class Level_08_Switch_Role extends BaseTest{
 		userRegisterPage.clickToContinueButton();
 	}
 
+	
 	@Test
 	public void Role_01_User() {
 		userLoginPage = userHomePage.openLoginPage();

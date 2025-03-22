@@ -1,0 +1,10 @@
+<dependencies>
+    <!-- Selenium 4.6 dependency -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.6.0</version>
+    </dependency>
+    
+   
+</dependencies>

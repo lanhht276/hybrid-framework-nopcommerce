@@ -21,7 +21,6 @@ import pageObjects.nopCommerce.user.UserAddressesPageObject;
 import pageObjects.nopCommerce.user.UserChangePasswordPageObject;
 import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
-import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewPageObject;
 import pageObjects.nopCommerce.user.UserOrderPageObject;
 import pageObjects.nopCommerce.user.UserProductPageObject;

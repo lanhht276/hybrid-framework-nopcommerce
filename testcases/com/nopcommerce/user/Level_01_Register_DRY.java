@@ -1,5 +1,6 @@
 package com.nopcommerce.user;
 
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -21,16 +22,16 @@ public class Level_01_Register_DRY {
 	
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
 		
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/");
+		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+		//driver.get("https://demo.nopcommerce.com/");
 		
 	
 	}
 
-	
+	@Test
 	public void TC_01_Register_Empty_Data() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("button#register-button")).click();
@@ -43,7 +44,7 @@ public class Level_01_Register_DRY {
 		
 	}
 	
-	
+	@Test
 	public void TC_02_Register_Invalid_Email() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("input#FirstName")).sendKeys("Automation");
@@ -58,7 +59,7 @@ public class Level_01_Register_DRY {
 		
 	}
 	
-	
+	@Test
 	public void TC_03_Register_Success() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("input#FirstName")).sendKeys("Automation");
@@ -73,7 +74,7 @@ public class Level_01_Register_DRY {
 
 	}
   
-	
+	@Test
 	public void TC_04_Register_Existing_Email() {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("input#FirstName")).sendKeys("Automation");
@@ -101,7 +102,7 @@ public class Level_01_Register_DRY {
 		
 		driver.findElement(By.cssSelector("button#register-button")).click();
 		
-		Assert.assertEquals(driver.findElement(By.cssSelector("span#Password-error")).getText(), "Password must meet the following rules:\nmust have at least 6 characters");
+		Assert.assertEquals(driver.findElement(By.cssSelector("span#Password-error")).getText(), "Password must meet the following rules: must have at least 6 characters and not greater than 64 characters");
 
 
 	}

@@ -1,5 +1,8 @@
 package commons;
 
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -47,7 +50,7 @@ public class BaseTest {
 		
 		driver.manage().window().fullscreen();
 		
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get(GlobalConstants.USER_PAGE_URL);
 		return driver;
 		 

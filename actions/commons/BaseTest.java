@@ -1,14 +1,15 @@
 package commons;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
 
 
 public class BaseTest {
@@ -23,23 +24,10 @@ public class BaseTest {
 			driver = new FirefoxDriver();
 			break;
 		case CHROME:
-			
-            driver = new ChromeDriver();
-            break;
+			driver = new ChromeDriver();
+			break;
 		case EDGE:
 			driver = new EdgeDriver();
-			break;
-		case COCCOC:
-			
-			ChromeOptions options = new ChromeOptions();
-			options.setBinary("C:\\Program Files\\CocCoc\\Browser\\Application\\browser.exe");
-			driver = new ChromeDriver(options);
-			break;
-		case BRAVE:
-			
-			ChromeOptions braveoptions = new ChromeOptions();
-			braveoptions.setBinary("C:\\Program Files\\BraveSoftware\\Brave-Browser\\Application\\brave.exe");
-			driver = new ChromeDriver(braveoptions);
 			break;
 		
 		default:
@@ -51,7 +39,7 @@ public class BaseTest {
 		
 		driver.manage().window().fullscreen();
 		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		driver.get(GlobalConstants.USER_PAGE_URL);
 		return driver;
 		 

@@ -70,8 +70,8 @@ public class Level_07_Switch_Page extends BaseTest{
 
 		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
 
-		userRegisterPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+		
+		userRegisterPage.clickToLogoutLink();
 			
 	}
 	
@@ -107,8 +107,8 @@ public class Level_07_Switch_Page extends BaseTest{
 	}
 	
 	@AfterClass
-	public void afterClass() {
-		driver.close();
+	public void afterClass(){
+		closeBrowser();
 	}
 	
 	public int getRandomNumber() {

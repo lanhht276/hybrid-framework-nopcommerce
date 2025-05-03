@@ -10,6 +10,7 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import commons.BaseTest;
 //import commons.BaseTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
@@ -21,7 +22,7 @@ import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 
-public class Level_08_Switch_Role2 {
+public class Level_08_Switch_Role2 extends BaseTest {
 	private WebDriver driver;
 	private String firstName,lastName, userEmailAddress, userPassword,confirmPassword, adminEmailAddress, adminPassword;
 	
@@ -36,23 +37,16 @@ public class Level_08_Switch_Role2 {
 	
 	
 		
-		@Test
-		public static class SeleniumTest {
+	@BeforeClass
+	@Parameters("browser")
+	public void beforeClass (String browserName) {
+		System.out.println("Run on browserName: " + browserName);
 
-		    public static void main(String[] args) {
-		        // Đặt đường dẫn đến chromedriver.exe nếu không nằm trong PATH
-		        System.setProperty("webdriver.chrome.driver", "/path/to/chromedriver");
+		driver = getBrowserDriver(browserName);
+		
+	}
 
-		       
-		        // Khởi tạo WebDriver
-		        WebDriver driver = new WebDriver;
-		        try {
-		            // Mở trang web
-		            driver.get("http://www.google.com");
-		            }
-		    }
-
-	
+	@Test
 	public void Role_01_User() {
 		userLoginPage = userHomePage.openLoginPage();
 		

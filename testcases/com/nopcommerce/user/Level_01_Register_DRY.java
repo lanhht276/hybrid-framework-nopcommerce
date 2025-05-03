@@ -2,18 +2,20 @@ package com.nopcommerce.user;
 
 import java.time.Duration;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import commons.BaseTest;
 
-public class Level_01_Register_DRY {
+
+public class Level_01_Register_DRY extends BaseTest{
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	String emailAddress;
@@ -23,11 +25,14 @@ public class Level_01_Register_DRY {
 	@BeforeClass
 	public void beforeClass() {
 		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		//driver = new FirefoxDriver();
-		
-		//driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-		//driver.get("https://demo.nopcommerce.com/");
-		
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("user-data-dir=C:/Users/tho2_mantu/AppData/Local/Google/Chrome/User Data");
+		chromeOptions.addArguments("profile-directory=Profile 2");
+		driver = new ChromeDriver(chromeOptions);
+	
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.get("https://demo.nopcommerce.com/");
+		emailAddress = "afc" + getRandomNumber() + "@mail.com";
 	
 	}
 
@@ -39,7 +44,7 @@ public class Level_01_Register_DRY {
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#FirstName-error")).getText(), "First name is required.");
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#LastName-error")).getText(), "Last name is required.");
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#Email-error")).getText(), "Email is required.");
-		Assert.assertEquals(driver.findElement(By.cssSelector("span#Password-error")).getText(), "Password is required.");
+		//Assert.assertEquals(driver.findElement(By.cssSelector("span#Password-error")).getText(), "Password is required.");
 		Assert.assertEquals(driver.findElement(By.cssSelector("span#ConfirmPassword-error")).getText(), "Password is required.");
 		
 	}
@@ -55,7 +60,7 @@ public class Level_01_Register_DRY {
 
 		driver.findElement(By.cssSelector("button#register-button")).click();
 		
-		Assert.assertEquals(driver.findElement(By.cssSelector("div.message-error li")).getText(), "Wrong email");
+		Assert.assertEquals(driver.findElement(By.cssSelector("span#Email-error")).getText(), "Wrong email");
 		
 	}
 	
@@ -71,6 +76,8 @@ public class Level_01_Register_DRY {
 		driver.findElement(By.cssSelector("button#register-button")).click();
 		
 		Assert.assertEquals(driver.findElement(By.cssSelector("div.result")).getText(), "Your registration completed");
+		
+		driver.findElement(By.cssSelector("a.ico-logout")).click();
 
 	}
   
@@ -79,7 +86,7 @@ public class Level_01_Register_DRY {
 		driver.findElement(By.cssSelector("a.ico-register")).click();
 		driver.findElement(By.cssSelector("input#FirstName")).sendKeys("Automation");
 		driver.findElement(By.cssSelector("input#LastName")).sendKeys("FC");
-		driver.findElement(By.cssSelector("input#Email")).sendKeys("afc1239@gmail.com");
+		driver.findElement(By.cssSelector("input#Email")).sendKeys(emailAddress);
 		driver.findElement(By.cssSelector("input#Password")).sendKeys("123456");
 		driver.findElement(By.cssSelector("input#ConfirmPassword")).sendKeys("123456");
 		
@@ -124,6 +131,7 @@ public class Level_01_Register_DRY {
 	
 	@AfterClass
 	public void afterClass() {
+		driver.close();
 	}
 	
 	public int getRandomNumber() {

@@ -32,10 +32,6 @@ public class UserLoginPageObject extends BasePage{
 		return getElementText(driver, UserLoginPageUI.ERROR_MESSAGE_AT_EMAIL_TEXTBOX);
 	}
 
-	public String getNotFoundAccountlMessage() {
-		return getElementText(driver, UserLoginPageUI.INVALID_ACCOUNT_MESSAGE);
-	}
-
 	public String getInvalidErrorMessage() {
 		return getElementText(driver, UserLoginPageUI.INVALID_ACCOUNT_MESSAGE);
 	}
@@ -46,6 +42,11 @@ public class UserLoginPageObject extends BasePage{
 		clickToLoginButton();
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
+	public void inputToFieldInLoginPage(String fieldName, String valueToInput) {
+		waitForElementVisible(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE , fieldName);
+		sendKeyToElement(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE, valueToInput , fieldName);
+	}
+
 	
 	
 }

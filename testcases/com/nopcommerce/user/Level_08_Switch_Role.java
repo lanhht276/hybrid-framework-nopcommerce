@@ -1,12 +1,14 @@
 package com.nopcommerce.user;
 
+import java.time.Duration;
 import java.util.Random;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -38,7 +40,10 @@ public class Level_08_Switch_Role extends BaseTest{
 	@Parameters("browser")
 	public void beforeClass (String browserName) {
 		System.out.println("Run on browserName: " + browserName);
-
+		//driver = new ChromeDriver();
+		driver = new FirefoxDriver();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+		driver.get("https://demo.nopcommerce.com/");
 		driver = getBrowserDriver(browserName);
 		
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
@@ -66,12 +71,12 @@ public class Level_08_Switch_Role extends BaseTest{
 
 		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
 
-		userRegisterPage.clickToContinueButton();
+		
 	}
 
 	
 	@Test
-	public void Role_01_User() {
+	public void Role_01_User_To_Admin() {
 		userLoginPage = userHomePage.openLoginPage();
 		
 		userHomePage = userLoginPage.loginAsUser(userEmailAddress,userPassword);
@@ -87,9 +92,9 @@ public class Level_08_Switch_Role extends BaseTest{
 		adminLoginPage = adminDashboardPage.clickToLogoutLinkAtAdminPage(driver);
 		
 	}
-	
+	 
 	@Test
-	public void Role_02_Admin() {
+	public void Role_02_Admin_To_User() {
 		adminLoginPage.openPageUrl(driver, GlobalConstants.USER_PAGE_URL);
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		userLoginPage = userHomePage.openLoginPage();
@@ -101,7 +106,7 @@ public class Level_08_Switch_Role extends BaseTest{
 	
 	@AfterClass
 	public void afterClass() {
-		driver.close();
+		closeBrowser();
 	}
 	
 	public int getRandomNumber() {

@@ -59,8 +59,8 @@ public class Level_06_Page_Generator_Manager_II extends BaseTest{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 
 		System.out.println("Pre-condition - Step 5: Click to Continue button");
-		registerPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+	
+		registerPage.clickToLogoutLink();
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class Level_06_Page_Generator_Manager_II extends BaseTest{
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_02 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");	
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter a valid email address.");	
 	}
 	
 	@Test
@@ -103,7 +103,7 @@ public class Level_06_Page_Generator_Manager_II extends BaseTest{
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_03 - Step 4: Verify error message is displayed");		
-		Assert.assertEquals(loginPage.getNotFoundAccountlMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");	
+		Assert.assertEquals(loginPage.getInvalidErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");	
 	}
   
 	@Test
@@ -160,7 +160,7 @@ public class Level_06_Page_Generator_Manager_II extends BaseTest{
 	
 	@AfterClass
 	public void afterClass() {
-		driver.close();
+		driver.quit();
 	}
 	
 	public int getRandomNumber() {

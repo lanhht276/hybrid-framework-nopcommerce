@@ -58,7 +58,7 @@ public class Level_05_Page_Factory extends BaseTest{
 
 		System.out.println("Pre-condition - Step 5: Click to Continue button");
 		registerPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+		registerPage.clickToLogoutLink();
 
 	}
 
@@ -95,7 +95,7 @@ public class Level_05_Page_Factory extends BaseTest{
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_02 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter a valid email address.");
 		
 	}
 	

@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import pageUI.nopCommerce.user.BasePageUI;
+import pageUI.nopCommerce.user.BasePageNopCommerceUI;
 import pageUI.nopCommerce.user.UserRegisterPageUI;
 
 public class UserRegisterPageObject extends BasePage {
@@ -40,8 +40,8 @@ public class UserRegisterPageObject extends BasePage {
 	}
 
 	public UserHomePageObject clickToLogoutLink() {
-		waitForElementClickable(driver, BasePageUI.LOGOUT_LINK_AT_USER_PAGE);
-		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER_PAGE);
+		waitForElementClickable(driver, BasePageNopCommerceUI.LOGOUT_LINK_AT_USER_PAGE);
+		clickToElement(driver, BasePageNopCommerceUI.LOGOUT_LINK_AT_USER_PAGE);
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
 	
@@ -73,8 +73,15 @@ public class UserRegisterPageObject extends BasePage {
 		return getElementText(driver, UserRegisterPageUI.REGISTER_SUCCESS_MSG);
 	}
 
-	public void clickToContinueButton() {
-		waitForElementClickable(driver, UserRegisterPageUI.CONTINUE_BUTTON);
-		clickToElement(driver, UserRegisterPageUI.CONTINUE_BUTTON);
+
+	public void inputToTextBoxInRegisterPage(String textbox, String valueToInput) {
+		waitForElementClickable(driver, UserRegisterPageUI.TEXTBOX_IN_REGISTER_PAGE, textbox);
+		sendKeyToElement(driver, UserRegisterPageUI.TEXTBOX_IN_REGISTER_PAGE, valueToInput, textbox );
+	}
+	
+	public String getErrorMessageAtTextbox(String textbox) {
+		return getElementText(driver, UserRegisterPageUI.TEXTBOX_ERROR_MSG,textbox );
 	}
 }
+
+

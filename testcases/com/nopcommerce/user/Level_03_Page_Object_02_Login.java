@@ -1,9 +1,12 @@
 package com.nopcommerce.user;
 
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,8 +30,12 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 	
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--user-data-dir=C:/Users/tho2_mantu/AppData/Local/Google/Chrome/User Data");
+		chromeOptions.addArguments("--profile-directory=Profile 2");
+		driver = new ChromeDriver(chromeOptions);
 		
 		firstName = "Automation";
 		lastName = "FC";
@@ -41,7 +48,7 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 		confirmPassword = "123456";
 		invalidPassword = "123";
 		
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		driver.get("https://demo.nopcommerce.com/");
 		
 		homePage = new UserHomePageObject(driver);
@@ -63,8 +70,8 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 
 		System.out.println("Pre-condition - Step 5: Click to Continue button");
-		registerPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+		
+		registerPage.clickToLogoutLink();
 
 	}
 
@@ -101,7 +108,7 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_02 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter a valid email address.");
 		
 	}
 	
@@ -119,7 +126,7 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 		loginPage.clickToLoginButton();
 		
 		System.out.println("Login_03 - Step 4: Verify error message is displayed");		
-		Assert.assertEquals(loginPage.getNotFoundAccountlMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
+		Assert.assertEquals(loginPage.getInvalidErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
 		
 	}
   
@@ -183,7 +190,7 @@ public class Level_03_Page_Object_02_Login extends BasePage{
 	
 	@AfterClass
 	public void afterClass() {
-		driver.close();
+		driver.quit();
 	}
 	
 	public int getRandomNumber() {

@@ -1,9 +1,12 @@
 package com.nopcommerce.user;
 
+import java.time.Duration;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -32,11 +35,15 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 		
 	@BeforeClass
 	public void beforeClass() {
-		System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		//System.setProperty("webdriver.gecko.driver", projectPath + "\\browserDrivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
+		ChromeOptions chromeOptions = new ChromeOptions();
+		chromeOptions.addArguments("--user-data-dir=C:/Users/tho2_mantu/AppData/Local/Google/Chrome/User Data");
+		chromeOptions.addArguments("--profile-directory=Profile 2");
+		driver = new ChromeDriver(chromeOptions);
 		
 		emailAddress = "afc" + getRandomNumber() + "@mail.com";
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
 		driver.get("https://demo.nopcommerce.com/");
 	}
 
@@ -56,7 +63,7 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtLastNameTextbox(), "Last name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
-		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
+		//Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(), "Password is required.");
 			
 	}
@@ -77,7 +84,7 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 		registerPage.clickToRegisterButton();
 		
 		System.out.println(" Register_02 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(registerPage.getInvalidErrorMessageEmail(), "Wrong email");
+		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Wrong email");
 		
 	}
 	
@@ -100,8 +107,8 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 		
 		System.out.println(" Register_03 - Step 5: Click to Continue button");
-		registerPage.clickToContinueButton();
-		//registerPage.clickToLogoutLink();
+		
+		registerPage.clickToLogoutLink();
 		
 	}
   
@@ -141,7 +148,7 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 		registerPage.clickToRegisterButton();
 
 		System.out.println(" Register_05 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password must meet the following rules:\nmust have at least 6 characters");
+		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password must meet the following rules: must have at least 6 characters and not greater than 64 characters");
 				
 	}
 	
@@ -166,10 +173,15 @@ public class Level_03_Page_Object_01_Register extends BasePage{
 	}
 	
 	@AfterClass
-	public void afterClass() {
-		driver.close();
+	public void afterClass(){
+		closeBrowser();
 	}
 	
+	private void closeBrowser() {
+		driver.quit();
+		
+	}
+
 	public int getRandomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);

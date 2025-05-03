@@ -70,8 +70,8 @@ public class Level_09_Dynamic_Locator extends BaseTest{
 
 		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
 
-		userRegisterPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+	
+		userRegisterPage.clickToLogoutLink();
 		
 		userLoginPage = userHomePage.openLoginPage();
 		

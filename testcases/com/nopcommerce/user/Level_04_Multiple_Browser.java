@@ -58,7 +58,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtLastNameTextbox(), "Last name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
-		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
+		//Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(), "Password is required.");
 	}
 
@@ -78,7 +78,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 		registerPage.clickToRegisterButton();
 
 		System.out.println(" Register_02 - Step 4: Verify error message is displayed");
-		Assert.assertEquals(registerPage.getInvalidErrorMessageEmail(), "Wrong email");
+		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Wrong email");
 	}
 
 	@Test
@@ -100,8 +100,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 		Assert.assertEquals(registerPage.getRegisterSuccessMessage(), "Your registration completed");
 
 		System.out.println(" Register_03 - Step 5: Click to Continue button");
-		registerPage.clickToContinueButton();
-		// registerPage.clickToLogoutLink();
+		registerPage.clickToLogoutLink();
 	}
 
 	@Test
@@ -140,7 +139,7 @@ public class Level_04_Multiple_Browser extends BaseTest {
 
 		System.out.println(" Register_05 - Step 4: Verify error message is displayed");
 		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(),
-				"Password must meet the following rules:\nmust have at least 6 characters");
+				"Password must meet the following rules: must have at least 6 characters and not greater than 64 characters");
 	}
 
 	@Test

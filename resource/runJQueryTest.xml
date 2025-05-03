@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="NopCommerce">
+
+	<test name="Run on FF">
+		<parameter name="browser" value="firefox" />
+		<parameter name="url" value="https://live.techpanda.org/" />
+
+		<classes>
+			<class name="com.jquery.Level_10_DataTable_DataGrid" />
+		</classes>
+	</test>
+
+
+</suite> 

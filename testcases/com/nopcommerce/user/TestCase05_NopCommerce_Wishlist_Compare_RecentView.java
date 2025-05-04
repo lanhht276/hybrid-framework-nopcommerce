@@ -59,7 +59,7 @@ public class TestCase05_NopCommerce_Wishlist_Compare_RecentView extends BaseTest
 		phoneNumber = "0123456789";
 		faxNumber = "0987654321";
 		newPassword = "666666";
-		
+
 		productMacbook = "Apple MacBook Pro";
 		productCamera = "Apple iCam";
 
@@ -98,7 +98,7 @@ public class TestCase05_NopCommerce_Wishlist_Compare_RecentView extends BaseTest
 	}
 
 	@Test
-	public void  TC_02_Add_Product_To_Cart_From_Wishlist_Page() {
+	public void TC_02_Add_Product_To_Cart_From_Wishlist_Page() {
 		userHomePage.clickToDynamicLinkName("wishlist");
 		userHomePage.checkToCheckBox("addtocart");
 		userHomePage.sleepInSecond(3);
@@ -108,7 +108,7 @@ public class TestCase05_NopCommerce_Wishlist_Compare_RecentView extends BaseTest
 		Assert.assertEquals(userHomePage.getPageBodyEmpty(), "The wishlist is empty!");
 		userHomePage.clickToDynamicLinkName("cart");
 		Assert.assertEquals(userHomePage.getPageTitle(), "Shopping cart");
-		Assert.assertEquals(userHomePage.getProductInCart(), productMacbook );
+		Assert.assertEquals(userHomePage.getProductInCart(), productMacbook);
 		userHomePage.clickToRemoveButtonFromCartPage();
 	}
 
@@ -131,12 +131,13 @@ public class TestCase05_NopCommerce_Wishlist_Compare_RecentView extends BaseTest
 	}
 
 	@Test
-	public void  TC_04_Add_Product_To_Compare() {	
+	public void TC_04_Add_Product_To_Compare() {
 		userHomePage.clickToLHeaderLogo();
 		userHomePage.clickToProductItemButton("1", "Add to compare list");
 		userHomePage.sleepInSecond(2);
 		userHomePage.clickToProductItemButton("3", "Add to compare list");
-		Assert.assertEquals(userHomePage.getSuccessMessageDisplayed(), "The product has been added to your product comparison");
+		Assert.assertEquals(userHomePage.getSuccessMessageDisplayed(),
+				"The product has been added to your product comparison");
 		userHomePage.clickToLinkName("product comparison");
 		Assert.assertEquals(userHomePage.getPageTitle(), "Compare products");
 		Assert.assertEquals(userHomePage.getNumberOfProductNameInCompareProductPage(), 2);
@@ -145,25 +146,27 @@ public class TestCase05_NopCommerce_Wishlist_Compare_RecentView extends BaseTest
 		Assert.assertTrue(userHomePage.isLinkNameDisplayed("Clear list"));
 		userHomePage.clickToLinkName("Clear list");
 		Assert.assertEquals(userHomePage.getPageBodyEmpty(), "You have no items to compare.");
-		//verify undisplayed
+		// verify undisplayed
 	}
-	
-	
+
 	@Test
 	public void TC_05_() {
-		
+
 	}
+
 	@Test
 	public void TC_06_() {
-	
+
 	}
+
 	@Test
 	public void TC_07_() {
-		
+
 	}
+
 	@Test
 	public void TC_08_() {
-	
+
 	}
 
 	@AfterClass

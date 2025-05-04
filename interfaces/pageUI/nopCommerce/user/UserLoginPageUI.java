@@ -7,6 +7,5 @@ public class UserLoginPageUI {
 	public static final String INVALID_ACCOUNT_MESSAGE = "css=div[class*='message-error']";
 	public static final String ERROR_MESSAGE_AT_EMAIL_TEXTBOX = "id=Email-error";
 	public static final String FIELD_IN_LOGIN_PAGE = "xpath=//input[@id='%s']";
-	
 
 }

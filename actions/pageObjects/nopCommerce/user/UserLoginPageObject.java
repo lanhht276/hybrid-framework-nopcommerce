@@ -6,26 +6,26 @@ import commons.BasePage;
 import commons.PageGeneratorManager;
 import pageUI.nopCommerce.user.UserLoginPageUI;
 
-public class UserLoginPageObject extends BasePage{
+public class UserLoginPageObject extends BasePage {
 	private WebDriver driver;
-	 
+
 	public UserLoginPageObject(WebDriver driver) {
-		 this.driver = driver;	
-	 }
+		this.driver = driver;
+	}
 
 	public UserHomePageObject clickToLoginButton() {
-		waitForElementClickable(driver, UserLoginPageUI.LOGIN_BUTTON );
-		clickToElement(driver, UserLoginPageUI.LOGIN_BUTTON );
-		//return new HomePageObject(driver);
+		waitForElementClickable(driver, UserLoginPageUI.LOGIN_BUTTON);
+		clickToElement(driver, UserLoginPageUI.LOGIN_BUTTON);
+		// return new HomePageObject(driver);
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
 
 	public void inputToEmailTextbox(String email) {
-		sendKeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX , email);
+		sendKeyToElement(driver, UserLoginPageUI.EMAIL_TEXTBOX, email);
 	}
 
 	public void inputToPasswordTextbox(String password) {
-		sendKeyToElement(driver, UserLoginPageUI.PASSWORD_TEXTBOX , password);
+		sendKeyToElement(driver, UserLoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
 	public String getErrorMessageAtEmailTextbox() {
@@ -42,12 +42,10 @@ public class UserLoginPageObject extends BasePage{
 		clickToLoginButton();
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
+
 	public void inputToFieldInLoginPage(String fieldName, String valueToInput) {
-		waitForElementVisible(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE , fieldName);
-		sendKeyToElement(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE, valueToInput , fieldName);
+		waitForElementVisible(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE, fieldName);
+		sendKeyToElement(driver, UserLoginPageUI.FIELD_IN_LOGIN_PAGE, valueToInput, fieldName);
 	}
 
-	
-	
 }
-

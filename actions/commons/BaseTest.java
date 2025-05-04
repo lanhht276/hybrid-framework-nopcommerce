@@ -1,6 +1,5 @@
 package commons;
 
-
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,99 +15,100 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-
 public class BaseTest {
-	
+
 	protected WebDriver driver;
-	
-	
-	
+
 	protected WebDriver getBrowserDriver(String browserName) {
 		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 		Path path = null;
 		File extensionFilePath = null;
-		
+
 		switch (browser) {
 		case FIREFOX:
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
-			firefoxOptions.addArguments("-profile", "C:\\Users\\tho2_mantu\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\xv1afi70.Automation Test");
+			firefoxOptions.addArguments("-profile",
+					"C:\\Users\\tho2_mantu\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\xv1afi70.Automation Test");
 			driver = new FirefoxDriver(firefoxOptions);
 			break;
-			
+
 		case CHROME:
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--user-data-dir=C:/Users/tho2_mantu/AppData/Local/Google/Chrome/User Data");
 			chromeOptions.addArguments("--profile-directory=Profile 2");
 			driver = new ChromeDriver(chromeOptions);
-		
+
 			ChromeOptions options = new ChromeOptions();
 			path = Paths.get(GlobalConstants.BROWSER_EXTENSION + "wappalyzer.crx");
 			extensionFilePath = new File(path.toUri());
 			options.addExtensions(extensionFilePath);
-			
+
 			break;
 		case EDGE:
 			driver = new EdgeDriver();
 			break;
-		
+
 		default:
 			throw new RuntimeException("BrowserName is invalid");
 		}
-		
+
 		driver.manage().window().setPosition(new Point(0, 0));
-		//driver.manage().window().setSize(new Dimension(1680,1050));
-		
+		// driver.manage().window().setSize(new Dimension(1680,1050));
+
 		driver.manage().window().maximize();
-		
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		driver.get(GlobalConstants.USER_PAGE_URL);
 		return driver;
-		 
+
 	}
+
 	protected WebDriver getBrowserDriver(String browserName, String appUrl) {
 		BrowserList browser = BrowserList.valueOf(browserName.toUpperCase());
 		Path path = null;
 		File extensionFilePath = null;
-		
+
 		switch (browser) {
 		case FIREFOX:
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
-			firefoxOptions.addArguments("-profile", "C:\\Users\\tho2_mantu\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\xv1afi70.Automation Test");
+			firefoxOptions.addArguments("-profile",
+					"C:\\Users\\tho2_mantu\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\xv1afi70.Automation Test");
 			driver = new FirefoxDriver(firefoxOptions);
 			break;
-			
+
 		case CHROME:
 			ChromeOptions chromeOptions = new ChromeOptions();
 			chromeOptions.addArguments("--user-data-dir=C:/Users/tho2_mantu/AppData/Local/Google/Chrome/User Data");
 			chromeOptions.addArguments("--profile-directory=Profile 2");
 			driver = new ChromeDriver(chromeOptions);
-		
+
 			/*
 			 * ChromeOptions options = new ChromeOptions(); path =
 			 * Paths.get(GlobalConstants.BROWSER_EXTENSION + "wappalyzer.crx");
 			 * extensionFilePath = new File(path.toUri());
 			 * options.addExtensions(extensionFilePath);
 			 */
-			
+
 			break;
 		case EDGE:
 			driver = new EdgeDriver();
 			break;
-		
+
 		default:
 			throw new RuntimeException("BrowserName is invalid");
 		}
-		
+
 		driver.manage().window().setPosition(new Point(0, 0));
-		//driver.manage().window().setSize(new Dimension(1680,1050));
-		
+		// driver.manage().window().setSize(new Dimension(1680,1050));
+
 		driver.manage().window().maximize();
-		
+
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(GlobalConstants.LONG_TIMEOUT));
 		driver.get(appUrl);
 		return driver;
-		 
+
 	}
+
 	protected String getEnvironmentUrl(String serverName) {
 		String envUrl = null;
 		EnvironmentList environment = EnvironmentList.valueOf(serverName.toUpperCase());
@@ -121,10 +121,10 @@ public class BaseTest {
 		} else if (environment == EnvironmentList.PRODUCTION) {
 			envUrl = "https://production-orangehrmlive.com/";
 		}
-		
+
 		return envUrl;
 	}
-	
+
 	protected boolean verifyTrue(boolean condition) {
 		boolean pass = true;
 		try {
@@ -167,6 +167,7 @@ public class BaseTest {
 		}
 		return pass;
 	}
+
 	protected void closeBrowser() {
 		driver.quit();
 	}

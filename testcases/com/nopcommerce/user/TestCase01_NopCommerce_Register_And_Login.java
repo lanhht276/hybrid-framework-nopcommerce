@@ -111,7 +111,7 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		Assert.assertEquals(userRegisterPage.getErrorMessageAtTextbox("Password"),
 				"Password must meet the following rules: must have at least 6 characters and not greater than 64 characters");
 	}
-	
+
 	@Test(priority = 6)
 	public void Register_06_Password_Not_Match() {
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
@@ -125,14 +125,14 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		Assert.assertEquals(userRegisterPage.getErrorMessageAtTextbox("ConfirmPassword"),
 				"The password and confirmation password do not match.");
 	}
-	
+
 	@Test(priority = 7)
 	public void Login_07_Empty_Data() {
 		userLoginPage = userHomePage.openLoginPage();
 		userLoginPage.clickToLoginButton();
 		Assert.assertEquals(userLoginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
 	}
-	
+
 	@Test(priority = 8)
 	public void Login_08_Invalid_Email() {
 		userLoginPage = userHomePage.openLoginPage();
@@ -140,6 +140,7 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		userLoginPage.clickToLoginButton();
 		Assert.assertEquals(userLoginPage.getErrorMessageAtEmailTextbox(), "Please enter a valid email address.");
 	}
+
 	@Test(priority = 9)
 	public void Login_09_Not_Register_Email() {
 		userLoginPage = userHomePage.openLoginPage();
@@ -149,14 +150,16 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		Assert.assertEquals(userLoginPage.getInvalidErrorMessage(),
 				"Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
 	}
+
 	@Test(priority = 10)
 	public void Login_10_Register_Email_Empty_Password() {
 		userLoginPage = userHomePage.openLoginPage();
 		userLoginPage.inputToFieldInLoginPage("Email", emailAddress);
 		userHomePage = userLoginPage.clickToLoginButton();
 		Assert.assertEquals(userLoginPage.getInvalidErrorMessage(),
-				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");	
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
+
 	@Test(priority = 11)
 	public void Login_11_Register_Email_Wrong_Password() {
 		userLoginPage = userHomePage.openLoginPage();
@@ -164,8 +167,9 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		userLoginPage.inputToFieldInLoginPage("Password", invalidPassword);
 		userHomePage = userLoginPage.clickToLoginButton();
 		Assert.assertEquals(userLoginPage.getInvalidErrorMessage(),
-				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");	
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
+
 	@Test(priority = 12)
 	public void Login_12_Register_Email_Correct_Password() {
 		userLoginPage = userHomePage.openLoginPage();
@@ -173,15 +177,15 @@ public class TestCase01_NopCommerce_Register_And_Login extends BaseTest {
 		System.out.println("email in TC 12 is: " + emailAddress);
 		userLoginPage.inputToFieldInLoginPage("Password", password);
 		System.out.println("pw in TC 12 is: " + password);
-		
+
 		userHomePage = userLoginPage.clickToLoginButton();
 		Assert.assertTrue(userHomePage.isLinkNameDisplayed("My account"));
-		 
+
 	}
-	
+
 	@AfterClass
 	public void afterClass() {
-		 closeBrowser();
+		closeBrowser();
 	}
 
 	public int getRandomNumber() {

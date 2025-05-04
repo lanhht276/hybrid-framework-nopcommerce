@@ -58,7 +58,8 @@ public class Level_04_Multiple_Browser extends BaseTest {
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtLastNameTextbox(), "Last name is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtEmailTextbox(), "Email is required.");
-		//Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password is required.");
+		// Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(),
+		// "Password is required.");
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(), "Password is required.");
 	}
 

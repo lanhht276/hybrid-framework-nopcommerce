@@ -9,22 +9,22 @@ import pageUI.nopCommerce.user.UserRegisterPageUI;
 
 public class UserRegisterPageObject extends BasePage {
 	private WebDriver driver;
-	
-	
+
 	public UserRegisterPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void clickToRegisterButton() {
-		waitForElementClickable(driver, UserRegisterPageUI.REGISTER_BUTTON );
+		waitForElementClickable(driver, UserRegisterPageUI.REGISTER_BUTTON);
 		clickToElement(driver, UserRegisterPageUI.REGISTER_BUTTON);
 	}
+
 	public void inputToFirstNameTextbox(String firstName) {
 		sendKeyToElement(driver, UserRegisterPageUI.FIRSTNAME_TEXTBOX, firstName);
 	}
 
 	public void inputToLastNameTextbox(String lastName) {
-		sendKeyToElement(driver, UserRegisterPageUI.LASTNAME_TEXTBOX, lastName);	
+		sendKeyToElement(driver, UserRegisterPageUI.LASTNAME_TEXTBOX, lastName);
 	}
 
 	public void inputToEmailTextbox(String email) {
@@ -32,7 +32,7 @@ public class UserRegisterPageObject extends BasePage {
 	}
 
 	public void inputToPasswordTextbox(String password) {
-		sendKeyToElement(driver, UserRegisterPageUI.PASSWORD_TEXTBOX, password);	
+		sendKeyToElement(driver, UserRegisterPageUI.PASSWORD_TEXTBOX, password);
 	}
 
 	public void inputToConfirmPasswordTextbox(String confirmPassword) {
@@ -44,7 +44,7 @@ public class UserRegisterPageObject extends BasePage {
 		clickToElement(driver, BasePageNopCommerceUI.LOGOUT_LINK_AT_USER_PAGE);
 		return PageGeneratorManager.getUserHomePage(driver);
 	}
-	
+
 	public String getErrorMessageAtFirstNameTextbox() {
 		return getElementText(driver, UserRegisterPageUI.FIRSTNAME_ERROR_MSG);
 	}
@@ -56,7 +56,7 @@ public class UserRegisterPageObject extends BasePage {
 	public String getErrorMessageAtEmailTextbox() {
 		return getElementText(driver, UserRegisterPageUI.EMAIL_ERROR_MSG);
 	}
-	
+
 	public String getInvalidErrorMessageEmail() {
 		return getElementText(driver, UserRegisterPageUI.INVALID_EMAIL_ERROR_MSG);
 	}
@@ -64,7 +64,7 @@ public class UserRegisterPageObject extends BasePage {
 	public String getErrorMessageAtPasswordTextbox() {
 		return getElementText(driver, UserRegisterPageUI.PASSWORD_ERROR_MSG);
 	}
-	
+
 	public String getErrorMessageAtConfirmPasswordTextbox() {
 		return getElementText(driver, UserRegisterPageUI.CONFIRM_PASSWORD_ERROR_MSG);
 	}
@@ -73,15 +73,12 @@ public class UserRegisterPageObject extends BasePage {
 		return getElementText(driver, UserRegisterPageUI.REGISTER_SUCCESS_MSG);
 	}
 
-
 	public void inputToTextBoxInRegisterPage(String textbox, String valueToInput) {
 		waitForElementClickable(driver, UserRegisterPageUI.TEXTBOX_IN_REGISTER_PAGE, textbox);
-		sendKeyToElement(driver, UserRegisterPageUI.TEXTBOX_IN_REGISTER_PAGE, valueToInput, textbox );
+		sendKeyToElement(driver, UserRegisterPageUI.TEXTBOX_IN_REGISTER_PAGE, valueToInput, textbox);
 	}
-	
+
 	public String getErrorMessageAtTextbox(String textbox) {
-		return getElementText(driver, UserRegisterPageUI.TEXTBOX_ERROR_MSG,textbox );
+		return getElementText(driver, UserRegisterPageUI.TEXTBOX_ERROR_MSG, textbox);
 	}
 }
-
-

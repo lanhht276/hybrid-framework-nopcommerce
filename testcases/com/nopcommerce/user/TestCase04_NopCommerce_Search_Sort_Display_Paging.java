@@ -92,40 +92,42 @@ public class TestCase04_NopCommerce_Search_Sort_Display_Paging extends BaseTest 
 	@Test
 	public void TC_01_Sort_With_Name_A_To_Z() {
 		userHomePage.clickToDropdown("products-orderby", "Name: A to Z");
-		
+
 	}
 
 	@Test
-	public void  TC_02_Sort_With_Name_Z_To_A() {
-		
+	public void TC_02_Sort_With_Name_Z_To_A() {
+
 	}
 
 	@Test
 	public void TC_03_Sort_With_Price_Low_To_High() {
-		
+
 	}
 
 	@Test
-	public void  TC_04_Sort_With_Price_High_To_Low() {	
-	
+	public void TC_04_Sort_With_Price_High_To_Low() {
+
 	}
-	
-	
+
 	@Test
 	public void TC_05_Advanced_Search_With_Parent_Categories() {
-		
+
 	}
+
 	@Test
 	public void TC_06_Advanced_Search_With_Sub_Categories() {
-	
+
 	}
+
 	@Test
 	public void TC_07_Advanced_Search_With_Incorrect_Manufacturer() {
-		
+
 	}
+
 	@Test
 	public void TC_08_Advanced_Search_With_Correct_Manufacturer() {
-	
+
 	}
 
 	@AfterClass

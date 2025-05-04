@@ -1,6 +1,5 @@
 package commons;
 
-
 import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
@@ -34,12 +33,12 @@ public class BasePageFactory {
 	}
 
 	protected void waitForElementVisible(WebDriver driver, WebElement element) {
-		WebDriverWait explicitWait =  new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		explicitWait.until(ExpectedConditions.visibilityOf(element));
 	}
 
 	protected void waitForElementClickable(WebDriver driver, WebElement element) {
-		WebDriverWait explicitWait =  new WebDriverWait(driver, Duration.ofSeconds(timeout));
+		WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
 		explicitWait.until(ExpectedConditions.elementToBeClickable(element));
 	}
 

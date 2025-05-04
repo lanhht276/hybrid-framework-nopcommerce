@@ -7,13 +7,13 @@ import pageUI.nopCommerce.user.BasePageNopCommerceUI;
 import pageUI.nopCommerce.user.UserCustomerInfoPageUI;
 import pageUI.nopCommerce.user.UserHomePageUI;
 
-public class UserCustomerInfoPageObject extends BasePage{
+public class UserCustomerInfoPageObject extends BasePage {
 	private WebDriver driver;
-	 
+
 	public UserCustomerInfoPageObject(WebDriver driver) {
-		 this.driver = driver;	 
-	 }
-	
+		this.driver = driver;
+	}
+
 	public void clickToNewsletterCheckbox() {
 		checkToDefaultCheckBoxOrRadio(driver, UserCustomerInfoPageUI.NEWSLETTER_CHECKBOX);
 	}
@@ -27,16 +27,17 @@ public class UserCustomerInfoPageObject extends BasePage{
 		waitForElementClickable(driver, UserCustomerInfoPageUI.FEMALE_GENDER);
 		checkToDefaultCheckBoxOrRadio(driver, UserCustomerInfoPageUI.FEMALE_GENDER);
 	}
-	
-	public void inputToTextboxInCustomerInfoPage(String textboxName, String valueToInput ) {
+
+	public void inputToTextboxInCustomerInfoPage(String textboxName, String valueToInput) {
 		waitForElementClickable(driver, UserCustomerInfoPageUI.TEXTBOX_IN_CUSTOMER_INFO_PAGE, textboxName);
-		sendKeyToElement(driver, UserCustomerInfoPageUI.TEXTBOX_IN_CUSTOMER_INFO_PAGE, valueToInput, textboxName );
+		sendKeyToElement(driver, UserCustomerInfoPageUI.TEXTBOX_IN_CUSTOMER_INFO_PAGE, valueToInput, textboxName);
 	}
+
 	public String getTextInTextbox(String textboxName) {
 		waitForElementVisible(driver, UserCustomerInfoPageUI.TEXTBOX_IN_CUSTOMER_INFO_PAGE, textboxName);
 		return getElementAttribute(driver, UserCustomerInfoPageUI.TEXTBOX_IN_CUSTOMER_INFO_PAGE, "value", textboxName);
 	}
-	
+
 	public void clickToSaveButton() {
 		waitForElementClickable(driver, UserCustomerInfoPageUI.SAVE_BUTTON);
 		clickToElement(driver, UserCustomerInfoPageUI.SAVE_BUTTON);
@@ -52,6 +53,3 @@ public class UserCustomerInfoPageObject extends BasePage{
 		return isElementSelected(driver, UserCustomerInfoPageUI.FEMALE_GENDER);
 	}
 }
-
-
-

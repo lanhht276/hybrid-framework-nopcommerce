@@ -23,10 +23,10 @@ import pageObjects.nopCommerce.user.UserRegisterPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 import pageObjects.nopCommerce.user.UserStockPageObject;
 
-public class Level_07_Switch_Page extends BaseTest{
+public class Level_07_Switch_Page extends BaseTest {
 	private WebDriver driver;
-	private String firstName,lastName,validEmail, password,confirmPassword;
-	
+	private String firstName, lastName, validEmail, password, confirmPassword;
+
 	private UserHomePageObject userHomePage;
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
@@ -38,7 +38,7 @@ public class Level_07_Switch_Page extends BaseTest{
 	private UserStockPageObject userStockPage;
 	private UserMyProductReviewPageObject userMyProductReviewPage;
 	private UserChangePasswordPageObject userChangePasswordPage;
-	 
+
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -51,49 +51,48 @@ public class Level_07_Switch_Page extends BaseTest{
 		validEmail = "afc" + getRandomNumber() + "@mail.com";
 		password = "123456";
 		confirmPassword = "123456";
-	
+
 	}
 
 	@Test
 	public void User_01_Register() {
-		
+
 		userRegisterPage = userHomePage.openRegisterPage();
-		
+
 		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(validEmail);
 		System.out.println(validEmail);
 		userRegisterPage.inputToPasswordTextbox(password);
 		userRegisterPage.inputToConfirmPasswordTextbox(confirmPassword);
-			
+
 		userRegisterPage.clickToRegisterButton();
 
 		Assert.assertEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed");
 
-		
 		userRegisterPage.clickToLogoutLink();
-			
+
 	}
-	
+
 	@Test
 	public void User_02_Login() {
-		
+
 		userLoginPage = userHomePage.openLoginPage();
-		
+
 		userLoginPage.inputToEmailTextbox(validEmail);
 		userLoginPage.inputToPasswordTextbox(password);
-		
+
 		userLoginPage.clickToLoginButton();
-		
+
 		Assert.assertTrue(userHomePage.isMyAccountLinkDisplayed());
 	}
-	
+
 	@Test
 	public void User_03_My_Account() {
 		userCustomerInfoPage = userHomePage.openCustomerInfoPage();
 		Assert.assertTrue(userCustomerInfoPage.isCustomerInfoPageDisplayed());
 	}
-  
+
 	@Test
 	public void User_04_Switch_Page() {
 		userAddressesPage = userCustomerInfoPage.openAddressesPage(driver);
@@ -105,12 +104,12 @@ public class Level_07_Switch_Page extends BaseTest{
 		userChangePasswordPage = userMyProductReviewPage.openChangePasswordPage(driver);
 		userCustomerInfoPage = userChangePasswordPage.openCustomerInfoPage(driver);
 	}
-	
+
 	@AfterClass
-	public void afterClass(){
+	public void afterClass() {
 		closeBrowser();
 	}
-	
+
 	public int getRandomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);

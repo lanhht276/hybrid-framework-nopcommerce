@@ -23,10 +23,10 @@ import pageObjects.nopCommerce.user.UserRegisterPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointPageObject;
 import pageObjects.nopCommerce.user.UserStockPageObject;
 
-public class Level_12_Assert_Verify extends BaseTest{
+public class Level_12_Assert_Verify extends BaseTest {
 	private WebDriver driver;
-	private String firstName,lastName,validEmail, password,confirmPassword;
-	
+	private String firstName, lastName, validEmail, password, confirmPassword;
+
 	private UserHomePageObject userHomePage;
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
@@ -38,7 +38,7 @@ public class Level_12_Assert_Verify extends BaseTest{
 	private UserStockPageObject userStockPage;
 	private UserMyProductReviewPageObject userMyProductReviewPage;
 	private UserChangePasswordPageObject userChangePasswordPage;
-	 
+
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -51,39 +51,39 @@ public class Level_12_Assert_Verify extends BaseTest{
 		validEmail = "afc" + getRandomNumber() + "@mail.com";
 		password = "123456";
 		confirmPassword = "123456";
-	
+
 	}
 
 	@Test
 	public void User_01_Register_Login() {
-		
+
 		userRegisterPage = userHomePage.openRegisterPage();
-		
+
 		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(validEmail);
-		//System.out.println(validEmail);
+		// System.out.println(validEmail);
 		userRegisterPage.inputToPasswordTextbox(password);
 		userRegisterPage.inputToConfirmPasswordTextbox(confirmPassword);
-			
+
 		userRegisterPage.clickToRegisterButton();
 
 		verifyEquals(userRegisterPage.getRegisterSuccessMessage(), "Your registration completed...");
-	
+
 		userRegisterPage.clickToLogoutLink();
-		
+
 		userLoginPage = userHomePage.openLoginPage();
-		
+
 		userLoginPage.inputToEmailTextbox(validEmail);
 		userLoginPage.inputToPasswordTextbox(password);
-		
+
 		userLoginPage.clickToLoginButton();
 		verifyFalse(userHomePage.isMyAccountLinkDisplayed());
-	
+
 		userCustomerInfoPage = userHomePage.openCustomerInfoPage();
 		verifyTrue(userCustomerInfoPage.isCustomerInfoPageDisplayed());
 	}
-  
+
 	@Test
 	public void User_02_Switch_Page() {
 		userAddressesPage = userCustomerInfoPage.openAddressesPage(driver);
@@ -94,50 +94,58 @@ public class Level_12_Assert_Verify extends BaseTest{
 		userChangePasswordPage = userStockPage.openChangePasswordPage(driver);
 		userMyProductReviewPage = userChangePasswordPage.openMyProductReviewPage(driver);
 	}
+
 	@Test
 	public void User_03_Dynamic_Page_01() {
-		userChangePasswordPage = (UserChangePasswordPageObject) userMyProductReviewPage.openPagesAtMyAccountPageByName(driver,"Change password");
-		userCustomerInfoPage = (UserCustomerInfoPageObject) userChangePasswordPage.openPagesAtMyAccountPageByName(driver,"Customer info");
-		userAddressesPage = (UserAddressesPageObject) userCustomerInfoPage.openPagesAtMyAccountPageByName(driver,"Addresses");
-		userRewardPointPage = (UserRewardPointPageObject) userAddressesPage.openPagesAtMyAccountPageByName(driver,"Reward points");
-		userOrderPage = (UserOrderPageObject) userRewardPointPage.openPagesAtMyAccountPageByName(driver,"Orders");
-		userProductPage = (UserProductPageObject) userOrderPage.openPagesAtMyAccountPageByName(driver,"Downloadable products");
-		userStockPage = (UserStockPageObject) userProductPage.openPagesAtMyAccountPageByName(driver,"Back in stock subscriptions");
-		userMyProductReviewPage = (UserMyProductReviewPageObject) userStockPage.openPagesAtMyAccountPageByName(driver,"My product reviews");
+		userChangePasswordPage = (UserChangePasswordPageObject) userMyProductReviewPage
+				.openPagesAtMyAccountPageByName(driver, "Change password");
+		userCustomerInfoPage = (UserCustomerInfoPageObject) userChangePasswordPage
+				.openPagesAtMyAccountPageByName(driver, "Customer info");
+		userAddressesPage = (UserAddressesPageObject) userCustomerInfoPage.openPagesAtMyAccountPageByName(driver,
+				"Addresses");
+		userRewardPointPage = (UserRewardPointPageObject) userAddressesPage.openPagesAtMyAccountPageByName(driver,
+				"Reward points");
+		userOrderPage = (UserOrderPageObject) userRewardPointPage.openPagesAtMyAccountPageByName(driver, "Orders");
+		userProductPage = (UserProductPageObject) userOrderPage.openPagesAtMyAccountPageByName(driver,
+				"Downloadable products");
+		userStockPage = (UserStockPageObject) userProductPage.openPagesAtMyAccountPageByName(driver,
+				"Back in stock subscriptions");
+		userMyProductReviewPage = (UserMyProductReviewPageObject) userStockPage.openPagesAtMyAccountPageByName(driver,
+				"My product reviews");
 	}
-	
+
 	@Test
 	public void User_03_Dynamic_Page_02() {
 		userMyProductReviewPage.openPagesAtMyAccountPageByName(driver, "Change password");
-		userChangePasswordPage= PageGeneratorManager.getUserChangePasswordPage(driver);
-		
-		userChangePasswordPage.openPagesAtMyAccountPageByName(driver,"Customer info");
+		userChangePasswordPage = PageGeneratorManager.getUserChangePasswordPage(driver);
+
+		userChangePasswordPage.openPagesAtMyAccountPageByName(driver, "Customer info");
 		userCustomerInfoPage = PageGeneratorManager.getUserCustomerInfoPage(driver);
-		
-		userCustomerInfoPage.openPagesAtMyAccountPageByName(driver,"Addresses");
+
+		userCustomerInfoPage.openPagesAtMyAccountPageByName(driver, "Addresses");
 		userAddressesPage = PageGeneratorManager.getUserAddressesPage(driver);
-		
-		userAddressesPage.openPagesAtMyAccountPageByName(driver,"Reward points");
+
+		userAddressesPage.openPagesAtMyAccountPageByName(driver, "Reward points");
 		userRewardPointPage = PageGeneratorManager.getUserRewardPointPage(driver);
-		
-		userRewardPointPage.openPagesAtMyAccountPageByName(driver,"Orders");
+
+		userRewardPointPage.openPagesAtMyAccountPageByName(driver, "Orders");
 		userOrderPage = PageGeneratorManager.getUserOrderPage(driver);
-		
-		userOrderPage.openPagesAtMyAccountPageByName(driver,"Downloadable products");
+
+		userOrderPage.openPagesAtMyAccountPageByName(driver, "Downloadable products");
 		userProductPage = PageGeneratorManager.getUserProductPage(driver);
-		
-		userProductPage.openPagesAtMyAccountPageByName(driver,"Back in stock subscriptions");
+
+		userProductPage.openPagesAtMyAccountPageByName(driver, "Back in stock subscriptions");
 		userStockPage = PageGeneratorManager.getUserStockPage(driver);
-		
-		userStockPage.openPagesAtMyAccountPageByName(driver,"My product reviews");
+
+		userStockPage.openPagesAtMyAccountPageByName(driver, "My product reviews");
 		userMyProductReviewPage = PageGeneratorManager.getUserMyProductReviewPage(driver);
 	}
-	
+
 	@AfterClass
 	public void afterClass() {
 		driver.close();
 	}
-	
+
 	public int getRandomNumber() {
 		Random rand = new Random();
 		return rand.nextInt(9999);

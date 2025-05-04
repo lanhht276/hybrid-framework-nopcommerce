@@ -60,7 +60,7 @@ public class TestCase02_NopCommerce_My_Account extends BaseTest {
 		titleReview = "Automation test title";
 		textReview = "Automation test review" + getRandomNumber();
 		product = "Apple MacBook Pro";
-		
+
 		userRegisterPage = userHomePage.openRegisterPage();
 		userRegisterPage.inputToTextBoxInRegisterPage("FirstName", firstName);
 		userRegisterPage.inputToTextBoxInRegisterPage("LastName", lastName);
@@ -152,12 +152,11 @@ public class TestCase02_NopCommerce_My_Account extends BaseTest {
 		userChangePasswordPage.inputToTextBoxinChangePasswordPage("NewPassword", newPassword);
 		userChangePasswordPage.inputToTextBoxinChangePasswordPage("ConfirmNewPassword", newPassword);
 		userChangePasswordPage.clickToButton("Change password");
-		Assert.assertEquals(userChangePasswordPage.getSuccessMessageDisplayed(),
-				"Password was changed");
+		Assert.assertEquals(userChangePasswordPage.getSuccessMessageDisplayed(), "Password was changed");
 		userChangePasswordPage.clickToCloseMessage();
 		userChangePasswordPage.sleepInSecond(3);
 		userChangePasswordPage.clickToLogoutLinkAtUserPage(driver);
-		
+
 		userLoginPage = userHomePage.openLoginPage();
 		userLoginPage.inputToFieldInLoginPage("Email", updatedEmailAddress);
 		System.out.println("email in TC is: " + updatedEmailAddress);
@@ -165,9 +164,9 @@ public class TestCase02_NopCommerce_My_Account extends BaseTest {
 		System.out.println("pw in TC is: " + password);
 
 		userHomePage = userLoginPage.clickToLoginButton();
-		
+
 		Assert.assertEquals(userLoginPage.getInvalidErrorMessage(),
-				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");	
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 		userLoginPage.inputToFieldInLoginPage("Email", updatedEmailAddress);
 		System.out.println("email in TC is: " + updatedEmailAddress);
 		userLoginPage.inputToFieldInLoginPage("Password", newPassword);
@@ -175,28 +174,28 @@ public class TestCase02_NopCommerce_My_Account extends BaseTest {
 		userHomePage = userLoginPage.clickToLoginButton();
 		Assert.assertTrue(userHomePage.isHeaderNameDisplayed("account"));
 	}
+
 	@Test
 	public void TC_04_My_Product_Review() {
 		userHomePage.clickToProductInHomePage(product);
 		userHomePage.clickToLinkName("Add your review");
-		userHomePage.inputToTextbox("input","AddProductReview_Title", titleReview);
+		userHomePage.inputToTextbox("input", "AddProductReview_Title", titleReview);
 		userHomePage.inputToTextbox("textarea", "AddProductReview_ReviewText", textReview);
 		userHomePage.clickToRating("4");
-		userHomePage.clickToButon( "buttons", "Submit review");
-		Assert.assertEquals(userHomePage.getSuccessMessageDisplayed(),
-				"Product review is successfully added.");
+		userHomePage.clickToButon("buttons", "Submit review");
+		Assert.assertEquals(userHomePage.getSuccessMessageDisplayed(), "Product review is successfully added.");
 		userHomePage.clickToCloseMessage();
 		userHomePage.sleepInSecond(3);
 		userHomePage.clickToDynamicLinkName("account");
 		UserMyProductReviewPage = userHomePage.openMyProductReviewPage(driver);
-		Assert.assertEquals(UserMyProductReviewPage.getProductReview("review-title"), titleReview);	
-		Assert.assertEquals(UserMyProductReviewPage.getProductReview("review-text"), textReview);	
-		Assert.assertTrue(UserMyProductReviewPage.getProductReview("review-info").contains(product));	
+		Assert.assertEquals(UserMyProductReviewPage.getProductReview("review-title"), titleReview);
+		Assert.assertEquals(UserMyProductReviewPage.getProductReview("review-text"), textReview);
+		Assert.assertTrue(UserMyProductReviewPage.getProductReview("review-info").contains(product));
 	}
 
 	@AfterClass
 	public void afterClass() {
-		 closeBrowser();
+		closeBrowser();
 	}
 
 	public int getRandomNumber() {

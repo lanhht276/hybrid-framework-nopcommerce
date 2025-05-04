@@ -17,11 +17,11 @@ import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
 public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 	private WebDriver driver;
-	private String firstName, lastName, emailAddress, password, confirmPassword, product ;
+	private String firstName, lastName, emailAddress, password, confirmPassword, product;
 	private UserHomePageObject userHomePage;
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
-	
+
 	@Parameters("browser")
 	@BeforeClass
 	public void beforeClass(String browserName) {
@@ -95,7 +95,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 	}
 
 	@Test
-	public void TC_04_Search_Exactly_With_Product_Name() {	
+	public void TC_04_Search_Exactly_With_Product_Name() {
 		userHomePage.inputToTextbox("input", "q", "Lenovo Thinkpad Carbon Laptop");
 		userHomePage.clickToButon("search-input", "Search");
 		Assert.assertEquals(userHomePage.getNumberResult(), 1);
@@ -107,9 +107,9 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 		 * Assert.assertTrue(foundProduct, "Product is not found!");
 		 */
 	}
-	
-	//userHomePage.checkToCheckBox("isc");
-	//userHomePage.checkToCheckBox("sid");
+
+	// userHomePage.checkToCheckBox("isc");
+	// userHomePage.checkToCheckBox("sid");
 	@Test
 	public void TC_05_Advanced_Search_With_Parent_Categories() {
 		userHomePage.inputToTextbox("input", "q", product);
@@ -118,6 +118,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 		userHomePage.clickToButon("search-input", "Search");
 		Assert.assertEquals(userHomePage.getSearchErrorMessage(), "No products were found that matched your criteria.");
 	}
+
 	@Test
 	public void TC_06_Advanced_Search_With_Sub_Categories() {
 		userHomePage.inputToTextbox("input", "q", product);
@@ -134,6 +135,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 		 * Assert.assertTrue(foundProduct, "Product is not found!");
 		 */
 	}
+
 	@Test
 	public void TC_07_Advanced_Search_With_Incorrect_Manufacturer() {
 		userHomePage.inputToTextbox("input", "q", "Apple Macbook Pro");
@@ -144,6 +146,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 		userHomePage.clickToButon("search-input", "Search");
 		Assert.assertEquals(userHomePage.getSearchErrorMessage(), "No products were found that matched your criteria.");
 	}
+
 	@Test
 	public void TC_08_Advanced_Search_With_Correct_Manufacturer() {
 		userHomePage.inputToTextbox("input", "q", "Apple Macbook Pro");
@@ -154,7 +157,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 		userHomePage.clickToButon("search-input", "Search");
 		Assert.assertEquals(userHomePage.getNumberResult(), 1);
 		Assert.assertEquals(userHomePage.getProductName(), "Apple MacBook Pro");
-		
+
 		/*
 		 * List<WebElement> results = userHomePage.getResult(); boolean foundProduct =
 		 * false; for (WebElement result : results) { String text = result.getText(); if
@@ -165,7 +168,7 @@ public class TestCase03_NopCommerce_Search_AdvancedSearch extends BaseTest {
 
 	@AfterClass
 	public void afterClass() {
-		 closeBrowser();
+		closeBrowser();
 	}
 
 	public int getRandomNumber() {
